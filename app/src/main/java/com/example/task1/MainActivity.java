@@ -11,17 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private static final long START_TIME_IN_MILLIS = 1200000;
+    private static final long START_TIME_IN_MILLIS = 300000;
 
-    private TextView mTextViewCountDown;
-    private Button mButtonStartPause;
-    private Button mButtonReset;
+    private TextView countdownButton;
+    private Button startPauseButton;
+    private Button resetButton;
 
     private CountDownTimer mCountDownTimer;
 
-    private boolean mTimerRunning;
+    private boolean runningTimer;
 
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long timeLeftInMillisSeconds = START_TIME_IN_MILLIS;
     private long mEndTime;
 
     @Override
@@ -29,15 +29,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+        countdownButton = findViewById(R.id.text_view_countdown);
 
-        mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonReset = findViewById(R.id.button_reset);
+        startPauseButton = findViewById(R.id.button_start_pause);
+        resetButton = findViewById(R.id.button_reset);
 
-        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
+        startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (mTimerRunning) {
+            public void onClick(View v) { // Onclick listener for the start and pause button.
+                if (runningTimer) {
                     pauseTimer();
                 } else {
                     startTimer();
@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonReset.setOnClickListener(new View.OnClickListener() {
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // onclicklistener that on press starts the function reset timer.
                 resetTimer();
             }
         });
@@ -56,64 +56,64 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+        mEndTime = System.currentTimeMillis() + timeLeftInMillisSeconds;
 
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+        mCountDownTimer = new CountDownTimer(timeLeftInMillisSeconds, 1000) { //
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
+                timeLeftInMillisSeconds = millisUntilFinished;
                 updateCountDownText();
             }
 
             @Override
             public void onFinish() {
-                mTimerRunning = false;
+                runningTimer = false;
                 updateButtons();
             }
         }.start();
 
-        mTimerRunning = true;
+        runningTimer = true;
         updateButtons();
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
-        mTimerRunning = false;
+        runningTimer = false;
         updateButtons();
     }
 
     private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        timeLeftInMillisSeconds = START_TIME_IN_MILLIS;
         updateCountDownText();
         updateButtons();
     }
 
     private void updateCountDownText() {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        int minutes = (int) (timeLeftInMillisSeconds / 1000) / 60;
+        int seconds = (int) (timeLeftInMillisSeconds / 1000) % 60;
 
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTextViewCountDown.setText(timeLeftFormatted);
+        countdownButton.setText(timeLeftFormatted);
     }
 
     private void updateButtons() {
-        if (mTimerRunning) {
-            mButtonReset.setVisibility(View.INVISIBLE);
-            mButtonStartPause.setText("Pause");
+        if (runningTimer) {
+            resetButton.setVisibility(View.INVISIBLE);
+            startPauseButton.setText("Pause");
         } else {
-            mButtonStartPause.setText("Start");
+            startPauseButton.setText("Start");
 
-            if (mTimeLeftInMillis < 1000) {
-                mButtonStartPause.setVisibility(View.INVISIBLE);
+            if (timeLeftInMillisSeconds < 1000) {
+                startPauseButton.setVisibility(View.INVISIBLE);
             } else {
-                mButtonStartPause.setVisibility(View.VISIBLE);
+                startPauseButton.setVisibility(View.VISIBLE);
             }
 
-            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                mButtonReset.setVisibility(View.VISIBLE);
+            if (timeLeftInMillisSeconds < START_TIME_IN_MILLIS) {
+                resetButton.setVisibility(View.VISIBLE);
             } else {
-                mButtonReset.setVisibility(View.INVISIBLE);
+                resetButton.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong("millisLeft", mTimeLeftInMillis);
-        outState.putBoolean("timerRunning", mTimerRunning);
+        outState.putLong("millisLeft", timeLeftInMillisSeconds);
+        outState.putBoolean("timerRunning", runningTimer);
         outState.putLong("endTime", mEndTime);
     }
 
@@ -130,15 +130,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
-        mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        timeLeftInMillisSeconds = savedInstanceState.getLong("millisLeft");
+        runningTimer = savedInstanceState.getBoolean("timerRunning");
         updateCountDownText();
         updateButtons();
 
-        if (mTimerRunning) {
+        if (runningTimer) {
             mEndTime = savedInstanceState.getLong("endTime");
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+            timeLeftInMillisSeconds = mEndTime - System.currentTimeMillis();
             startTimer();
         }
     }
 }
+// Source https://www.youtube.com/watch?v=MDuGwI6P-X8 Coding In Flow YouTube.
