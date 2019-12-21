@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#0C284D</color>
+    <color name="colorPrimaryDark">#0C284D</color>
+    <color name="colorAccent">#FFFFFF</color>
 </resources>
+<!--https://coolors.co/0c284d-ffffff-c0c0c0-bf945b-403f4c color palette-->
