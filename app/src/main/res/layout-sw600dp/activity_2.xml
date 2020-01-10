@@ -9,13 +9,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="264dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="273dp"
         android:text="How to use the interval app."
-        android:textFontWeight="800"
         android:textColor="@color/colorPrimary"
-        android:textSize="50px" />
+        android:textFontWeight="800"
+        android:textSize="20px" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,14 +39,14 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="57dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="374dp"
-        android:layout_marginBottom="333dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Press reset to start over the countdown timer." />
+        android:layout_marginBottom="593dp"
+        android:text="Press reset to start over the countdown timer."
+        android:textColor="@color/colorPrimary" />
 
     <ImageView
         android:id="@+id/imageView"

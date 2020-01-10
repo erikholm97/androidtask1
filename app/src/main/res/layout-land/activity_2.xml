@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="135dp"
         android:text="How to use the interval app."
-        android:textFontWeight="800"
         android:textColor="@color/colorPrimary"
+        android:textFontWeight="800"
         android:textSize="50px" />
 
     <TextView
@@ -22,18 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="314dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Press start to start the countdown timer." />
+        android:layout_marginTop="183dp"
+        android:text="Press start to start the countdown timer."
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="345dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Press pause to stop the countdown timer" />
+        android:layout_marginTop="216dp"
+        android:text="Press pause to stop the countdown timer"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp"
+        android:layout_marginTop="50dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
 </RelativeLayout>
