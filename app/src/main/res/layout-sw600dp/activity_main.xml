@@ -25,8 +25,8 @@
         android:layout_below="@+id/text_view_countdown"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorAccent"
-        android:text="Starta" />
+        android:text="Start"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/button_reset"
